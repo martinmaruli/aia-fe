@@ -3,6 +3,7 @@ import { Row, Col, Pagination } from 'react-bootstrap';
 import Content from './Content';
 import Loading from './Loading';
 import { ContentContext } from '../context';
+import NotFound from '../pages/NotFound';
 
 const ContentWrapper = () => {
   const context = useContext(ContentContext)
@@ -15,11 +16,11 @@ const ContentWrapper = () => {
 
   // const id = '623a08803f69bbf06ea5d3e6';
 
-  
+  console.log(data.data)
 
   
 
-  for (let i = 1; i <= data.data.allPage; i++) {
+  for (let i = 1; i <= data.allPage; i++) {
     paginationBtn.push(
       <Pagination.Item
         key={i}
@@ -39,10 +40,12 @@ const ContentWrapper = () => {
           <Row className="contentGallery g-3 pt-2">
             {data.loading ? (
               <Loading />
-            ) : (
+            ) : data.data.length !== 0 ? (
               <>
                 <Content data={data.data} />
               </>
+            ) : (
+                <NotFound />
             )}
             <Col sm='12' className='d-flex justify-content-center'>
               <Pagination>

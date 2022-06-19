@@ -6,26 +6,30 @@ import { Navbar, Form, FormControl, Button} from 'react-bootstrap';
 const NavbarComponent = () => {
   // const [show, setShow] = useState(false);
   const context = useContext(ContentContext)
-  const { reqData } = context;
-  const [search, setSearch] = useState('');
+  const { reqData, keyword, pagination } = context;
+  const [search, setSearch] = keyword;
+  const [page, setPage] = pagination;
 
   // const handleClose = () => setShow(false);
   // const handleShow = () => setShow(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    reqData(search);
+    setPage(1)
+    reqData(search, page);
   }
 
   return (
     <div className="d-flex bg-white justify-content-center border border-bottom-2 shadow-sm sticky-top">
       <Navbar className="col-sm-11">
         <div className="container mx-0">
-          <Navbar.Brand href="#">
-            <h3>
-              <span className="fw-bold text-primary">Net</span>
-              <span className="fw-light text-gray">Slum</span>
-            </h3>
+          <Navbar.Brand >
+            <button className='btn bg-trasnparent border-0' onClick={() => window.location.reload()}>
+              <h3>
+                <span className="fw-bold text-primary">Net</span>
+                <span className="fw-light text-gray">Slum</span>
+              </h3>
+            </button>
           </Navbar.Brand>
           <Form className="formSearch text-align-end col-5 border border-1" onSubmit={handleSubmit}>
             <FormControl

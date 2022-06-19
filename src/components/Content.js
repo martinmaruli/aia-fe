@@ -3,7 +3,7 @@ import { Col } from 'react-bootstrap';
 const Content = (props) => {
   return (
     <>
-      {props.data?.data && props.data.data.map((data, index) => {
+      {props.data && props.data.map((data, index) => {
         return (
           <Col key={index} sm="6">
             <div className="contentBox w-100">

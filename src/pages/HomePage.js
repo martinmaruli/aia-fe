@@ -12,38 +12,45 @@ const HomePage = () => {
     error: false,
   });
 
+  const [search, setSearch] = useState('')
+
   const [page, setPage] = useState(1);
-  const reqData = (search = '', pageNumber = 1) => {
+  const reqData = (searchKey = '', pageNumber = 1) => {
     axios({
       method: "post",
       url: `https://aia-be.herokuapp.com/api/v1/getFlickr?page=${pageNumber}`,
+      allPage: 0,
       data: {
-        search,
+        search: searchKey,
       }
     })
       .then((response) => {
         setData({
           loading: false,
-          data: response.data,
           error: false,
+          ...response.data
         });
       })
       .catch((error) => {
-        setData({
-          loading: false,
-          data: false,
-          error: error.message,
+        setData((prev) => {
+          return {
+            ...prev,
+            loading: false,
+            data: false,
+            error: error.message,
+          }
         });
       });
   };
   useEffect(() => {
-    reqData('', page);
+    reqData(search, page);
     // eslint-disable-next-line
   }, [page]);
   const contextValue = {
     data,
     reqData,
-    pagination: [page, setPage]
+    pagination: [page, setPage],
+    keyword: [search, setSearch]
   }
     return (
       <>
