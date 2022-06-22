@@ -1,6 +1,5 @@
 import NavbarComponent from '../components/Navbar';
 import ContentWrapper from '../components/ContentWrapper';
-import Footer from '../components/Footer';
 import { ContentContext } from '../context'; 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -19,7 +18,6 @@ const HomePage = () => {
     axios({
       method: "post",
       url: `https://aia-be.herokuapp.com/api/v1/getFlickr?page=${pageNumber}`,
-      allPage: 0,
       data: {
         search: searchKey,
       }

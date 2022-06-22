@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { ContentContext } from '../context';
 // import { useState } from 'react';
 import { Navbar, Form, FormControl, Button} from 'react-bootstrap';
@@ -33,7 +33,7 @@ const NavbarComponent = () => {
           </Navbar.Brand>
           <Form className="formSearch text-align-end col-5 border border-1" onSubmit={handleSubmit}>
             <FormControl
-              type="search"
+              type="text"
               placeholder="Find"
               className="me-2 border-0 bg-transparent"
               aria-label="Search"

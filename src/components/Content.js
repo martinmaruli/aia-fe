@@ -7,7 +7,7 @@ const Content = (props) => {
         return (
           <Col key={index} sm="6">
             <div className="contentBox w-100">
-              <img className="p-0" src={data.link} alt="image" />
+              <img className="p-0" src={data.link} alt="" />
               <div className="overlay">
                 <div className="description d-flex flex-column mx-2 text-white w-100">
                   <h5 className="text-truncate">{data.title}</h5>
